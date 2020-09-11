@@ -38,6 +38,7 @@ async (req, res) => {
 
 serviceCtrl.getReceta =
   async (req, res) => {
+
     try {
       if (fs.existsSync(RECETA_FILE_PATH)) {
         const recetaJson = require('../../recetas.json');
@@ -49,5 +50,21 @@ serviceCtrl.getReceta =
       console.log(error);
     }
   };
+
+serviceCtrl.cleanReceta =
+  async (req,res) => {
+
+    try {
+      if (fs.existsSync(RECETA_FILE_PATH)) {
+        fs.unlinkSync(RECETA_FILE_PATH);
+        res.send('Recetas eliminadas');
+      } else {
+        res.send('Aun no se cargaron recetas')
+      }
+    } catch (error) {
+      console.log('ERROR')
+      res.send('ERROR', error)
+    }
+  }
 
 module.exports = serviceCtrl;
