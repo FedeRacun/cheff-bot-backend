@@ -43,7 +43,7 @@ serviceCtrl.getReceta =
         const recetaJson = require('../../recetas.json');
         res.json(recetaJson);
       } else {
-        res.send('Aun no hay nada')
+        res.send('Aun no se cargaron recetas')
       }
     } catch (error) {
       console.log(error);
