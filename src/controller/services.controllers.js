@@ -42,6 +42,8 @@ serviceCtrl.getReceta =
       if (fs.existsSync(RECETA_FILE_PATH)) {
         const recetaJson = require('../../recetas.json');
         res.json(recetaJson);
+      } else {
+        res.send('Aun no hay nada')
       }
     } catch (error) {
       console.log(error);
