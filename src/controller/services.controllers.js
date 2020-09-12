@@ -2,14 +2,14 @@ const serviceCtrl = {};
 
 // NodeJs packages
 const fs = require('fs');
-const RECETA_FILE_PATH = './recetas.json'
+const RECETA_FILE_PATH = './src/public/recetas.json'
 
 serviceCtrl.postReceta =
 async (req, res) => {
     const body = req.body;
 
     const writeReceta = (receta) => {
-      fs.writeFile('./recetas.json', JSON.stringify(receta), function (err) {
+      fs.writeFile('./src/public/recetas.json', JSON.stringify(receta), function (err) {
         if (err) {
             console.error(err);
         }
@@ -19,7 +19,7 @@ async (req, res) => {
     try {
         //file exists
         if (fs.existsSync(RECETA_FILE_PATH)) {
-          const recetaJson = require('../../recetas.json');
+          const recetaJson = require('../public/recetas.json');
           recetaJson.push(body);
           writeReceta(recetaJson)
 
@@ -38,10 +38,10 @@ async (req, res) => {
 
 serviceCtrl.getReceta =
   async (req, res) => {
-
+    /*
     try {
       if (fs.existsSync(RECETA_FILE_PATH)) {
-        const recetaJson = require('../../recetas.json');
+        const recetaJson = require('../../public/recetas.json');
         res.json(recetaJson);
       } else {
         res.send('Aun no se cargaron recetas')
@@ -49,6 +49,7 @@ serviceCtrl.getReceta =
     } catch (error) {
       console.log(error);
     }
+    */
   };
 
 serviceCtrl.cleanReceta =
